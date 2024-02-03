@@ -1,0 +1,625 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "home-iot-api",
+    "description" : "The API for the EatBacon IOT project",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/IULIAETEODORESCU/project_task/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "paths" : {
+    "/products" : {
+      "get" : {
+        "tags" : [ "Product" ],
+        "summary" : "Returns a list of products",
+        "operationId" : "getProducts",
+        "responses" : {
+          "200" : {
+            "description" : "A list of products",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productCategories" : {
+      "get" : {
+        "tags" : [ "ProductCategory" ],
+        "summary" : "Returns a list of product categories",
+        "operationId" : "getProductCategories",
+        "responses" : {
+          "200" : {
+            "description" : "A list of product categories",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductCategory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salesOrders" : {
+      "get" : {
+        "tags" : [ "SalesOrder" ],
+        "summary" : "Returns a list of sales orders",
+        "operationId" : "getSalesOrders",
+        "responses" : {
+          "200" : {
+            "description" : "A list of sales orders",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SalesOrderHeader"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salesOrderDetails" : {
+      "get" : {
+        "tags" : [ "SalesOrderDetail" ],
+        "summary" : "Returns a list of sales order details",
+        "operationId" : "getSalesOrderDetails",
+        "responses" : {
+          "200" : {
+            "description" : "A list of sales order details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SalesOrderDetail"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Address" : {
+        "type" : "object",
+        "properties" : {
+          "AddressID" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "AddressLine1" : {
+            "type" : "string"
+          },
+          "AddressLine2" : {
+            "type" : "string"
+          },
+          "City" : {
+            "type" : "string"
+          },
+          "StateProvince" : {
+            "type" : "string"
+          },
+          "CountryRegion" : {
+            "type" : "string"
+          },
+          "PostalCode" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Customer" : {
+        "type" : "object",
+        "properties" : {
+          "CustomerID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the customer.",
+            "format" : "int32"
+          },
+          "NameStyle" : {
+            "type" : "boolean",
+            "description" : "A boolean value representing if the customer has a title."
+          },
+          "Title" : {
+            "type" : "string",
+            "description" : "The title of the customer (e.g., Mr., Ms.).",
+            "nullable" : true
+          },
+          "FirstName" : {
+            "type" : "string",
+            "description" : "The first name of the customer."
+          },
+          "MiddleName" : {
+            "type" : "string",
+            "description" : "The middle name of the customer.",
+            "nullable" : true
+          },
+          "LastName" : {
+            "type" : "string",
+            "description" : "The last name of the customer."
+          },
+          "Suffix" : {
+            "type" : "string",
+            "description" : "The suffix for the customer's name, if applicable.",
+            "nullable" : true
+          },
+          "CompanyName" : {
+            "type" : "string",
+            "description" : "The name of the company the customer represents."
+          },
+          "SalesPerson" : {
+            "type" : "string",
+            "description" : "The associated salesperson for the customer."
+          },
+          "EmailAddress" : {
+            "type" : "string",
+            "description" : "The email address of the customer.",
+            "format" : "email"
+          },
+          "Phone" : {
+            "type" : "string",
+            "description" : "The contact phone number for the customer."
+          },
+          "PasswordHash" : {
+            "type" : "string",
+            "description" : "A hash of the customer's password."
+          },
+          "PasswordSalt" : {
+            "type" : "string",
+            "description" : "The salt used in conjunction with the password hash."
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the customer record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the customer record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a customer record."
+      },
+      "CustomerAddress" : {
+        "type" : "object",
+        "properties" : {
+          "CustomerID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the customer.",
+            "format" : "int32"
+          },
+          "AddressID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the address.",
+            "format" : "int32"
+          },
+          "AddressType" : {
+            "type" : "string",
+            "description" : "The type of address (e.g., Main Office)."
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the customer address record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the customer address record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a record linking a customer to an address with an address type."
+      },
+      "Product" : {
+        "type" : "object",
+        "properties" : {
+          "ProductID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the product.",
+            "format" : "int32"
+          },
+          "Name" : {
+            "type" : "string",
+            "description" : "The name of the product."
+          },
+          "ProductNumber" : {
+            "type" : "string",
+            "description" : "The unique number identifying the product."
+          },
+          "Color" : {
+            "type" : "string",
+            "description" : "The color description of the product.",
+            "nullable" : true
+          },
+          "StandardCost" : {
+            "type" : "number",
+            "description" : "The standard cost of the product.",
+            "format" : "float"
+          },
+          "ListPrice" : {
+            "type" : "number",
+            "description" : "The retail list price of the product.",
+            "format" : "float"
+          },
+          "Size" : {
+            "type" : "string",
+            "description" : "The size of the product.",
+            "nullable" : true
+          },
+          "Weight" : {
+            "type" : "number",
+            "description" : "The weight of the product in pounds.",
+            "format" : "float"
+          },
+          "ProductCategoryID" : {
+            "type" : "integer",
+            "description" : "The identifier for the product category.",
+            "format" : "int32"
+          },
+          "ProductModelID" : {
+            "type" : "integer",
+            "description" : "The identifier for the product model.",
+            "format" : "int32"
+          },
+          "SellStartDate" : {
+            "type" : "string",
+            "description" : "The date when the product was first available for sale.",
+            "format" : "date-time"
+          },
+          "SellEndDate" : {
+            "type" : "string",
+            "description" : "The date when the product was no longer available for sale.",
+            "format" : "date-time",
+            "nullable" : true
+          },
+          "DiscontinuedDate" : {
+            "type" : "string",
+            "description" : "The date when the product was discontinued.",
+            "format" : "date-time",
+            "nullable" : true
+          },
+          "ThumbnailPhoto" : {
+            "type" : "string",
+            "description" : "The binary data for the product's thumbnail photo.",
+            "format" : "binary",
+            "nullable" : true
+          },
+          "ThumbnailPhotoFileName" : {
+            "type" : "string",
+            "description" : "The file name of the product's thumbnail photo.",
+            "nullable" : true
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the product record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the product record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a product in the catalog."
+      },
+      "ProductCategory" : {
+        "type" : "object",
+        "properties" : {
+          "ProductCategoryID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the product category.",
+            "format" : "int32"
+          },
+          "ParentProductCategoryID" : {
+            "type" : "integer",
+            "description" : "The identifier for the parent product category, if any.",
+            "format" : "int32",
+            "nullable" : true
+          },
+          "Name" : {
+            "type" : "string",
+            "description" : "The name of the product category."
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the product category record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the product category record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a category for products."
+      },
+      "ProductDescription" : {
+        "type" : "object",
+        "properties" : {
+          "ProductDescriptionID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the product description.",
+            "format" : "int32"
+          },
+          "Description" : {
+            "type" : "string",
+            "description" : "The textual description of the product."
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the product description record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the product description record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a detailed description for a product."
+      },
+      "ProductModel" : {
+        "type" : "object",
+        "properties" : {
+          "ProductModelID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the product model.",
+            "format" : "int32"
+          },
+          "Name" : {
+            "type" : "string",
+            "description" : "The name of the product model."
+          },
+          "CatalogDescription" : {
+            "type" : "string",
+            "description" : "The catalog description of the product model. This can be null if not provided.",
+            "nullable" : true
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the product model record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the product model record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a model of a product, potentially including a variety of specific products."
+      },
+      "ProductModelProductDescription" : {
+        "type" : "object",
+        "properties" : {
+          "ProductModelID" : {
+            "type" : "integer",
+            "description" : "The identifier for the product model.",
+            "format" : "int32"
+          },
+          "ProductDescriptionID" : {
+            "type" : "integer",
+            "description" : "The identifier for the product description.",
+            "format" : "int32"
+          },
+          "Culture" : {
+            "type" : "string",
+            "description" : "The culture or language the description is provided in."
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the product model product description record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents the relationship between product models and their descriptions, including localization information."
+      },
+      "SalesOrderDetail" : {
+        "type" : "object",
+        "properties" : {
+          "SalesOrderID" : {
+            "type" : "integer",
+            "description" : "The identifier for the sales order.",
+            "format" : "int32"
+          },
+          "SalesOrderDetailID" : {
+            "type" : "integer",
+            "description" : "The unique identifier for the sales order detail line.",
+            "format" : "int32"
+          },
+          "OrderQty" : {
+            "type" : "integer",
+            "description" : "The quantity ordered.",
+            "format" : "int32"
+          },
+          "ProductID" : {
+            "type" : "integer",
+            "description" : "The identifier for the product.",
+            "format" : "int32"
+          },
+          "UnitPrice" : {
+            "type" : "number",
+            "description" : "The selling price of a single unit.",
+            "format" : "float"
+          },
+          "UnitPriceDiscount" : {
+            "type" : "number",
+            "description" : "The discount on the unit price, if any.",
+            "format" : "float"
+          },
+          "LineTotal" : {
+            "type" : "number",
+            "description" : "The total amount for the line item.",
+            "format" : "float"
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the sales order detail record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents a single line item within a sales order, including product and quantity details."
+      },
+      "SalesOrderHeader" : {
+        "type" : "object",
+        "properties" : {
+          "SalesOrderID" : {
+            "type" : "integer",
+            "description" : "The primary key of the sales order.",
+            "format" : "int32"
+          },
+          "RevisionNumber" : {
+            "type" : "integer",
+            "description" : "The revision number of the sales order.",
+            "format" : "int32"
+          },
+          "OrderDate" : {
+            "type" : "string",
+            "description" : "The date the order was placed.",
+            "format" : "date-time"
+          },
+          "DueDate" : {
+            "type" : "string",
+            "description" : "The date the order is due.",
+            "format" : "date-time"
+          },
+          "ShipDate" : {
+            "type" : "string",
+            "description" : "The date the order was shipped.",
+            "format" : "date-time",
+            "nullable" : true
+          },
+          "Status" : {
+            "type" : "integer",
+            "description" : "The status of the order.",
+            "format" : "int32"
+          },
+          "OnlineOrderFlag" : {
+            "type" : "boolean",
+            "description" : "Flag indicating whether the order was placed online."
+          },
+          "SalesOrderNumber" : {
+            "type" : "string",
+            "description" : "The human-readable sales order number."
+          },
+          "PurchaseOrderNumber" : {
+            "type" : "string",
+            "description" : "The associated purchase order number.",
+            "nullable" : true
+          },
+          "AccountNumber" : {
+            "type" : "string",
+            "description" : "The account number for the customer."
+          },
+          "CustomerID" : {
+            "type" : "integer",
+            "description" : "The identifier for the customer.",
+            "format" : "int32"
+          },
+          "ShipToAddressID" : {
+            "type" : "integer",
+            "description" : "The identifier for the shipping address.",
+            "format" : "int32",
+            "nullable" : true
+          },
+          "BillToAddressID" : {
+            "type" : "integer",
+            "description" : "The identifier for the billing address.",
+            "format" : "int32",
+            "nullable" : true
+          },
+          "ShipMethod" : {
+            "type" : "string",
+            "description" : "The method of shipment."
+          },
+          "CreditCardApprovalCode" : {
+            "type" : "string",
+            "description" : "Approval code for the credit card payment.",
+            "nullable" : true
+          },
+          "SubTotal" : {
+            "type" : "number",
+            "description" : "The subtotal of the order.",
+            "format" : "float"
+          },
+          "TaxAmt" : {
+            "type" : "number",
+            "description" : "The tax amount for the order.",
+            "format" : "float"
+          },
+          "Freight" : {
+            "type" : "number",
+            "description" : "The freight amount for the order.",
+            "format" : "float"
+          },
+          "TotalDue" : {
+            "type" : "number",
+            "description" : "The total due amount for the order.",
+            "format" : "float"
+          },
+          "Comment" : {
+            "type" : "string",
+            "description" : "Additional comments for the order.",
+            "nullable" : true
+          },
+          "rowguid" : {
+            "type" : "string",
+            "description" : "A GUID value for the sales order header record.",
+            "format" : "uuid"
+          },
+          "ModifiedDate" : {
+            "type" : "string",
+            "description" : "The date and time the record was last modified.",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Represents the header information for a sales order, including shipping, billing, and payment details."
+      },
+      "DeviceRegistrationInfo" : {
+        "type" : "object",
+        "properties" : {
+          "uri" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "http://10.0.0.220:8080"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          }
+        }
+      }
+    }
+  }
+}
