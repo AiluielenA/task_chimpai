@@ -2,7 +2,8 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
 from django.urls import path, include
-from .views import sales_order_details_view
+from .views import get_data_from_swagger
+from .views import getProducts
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -15,8 +16,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('sales-order-details/', sales_order_details_view, name='sales-order-details'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path("",include("task_backend.urls")),
+    path('get-data/', get_data_from_swagger, name='get-data-from-swagger'),
+    path('products/', getProducts, name='get-products'),
 ]

@@ -12,6 +12,8 @@ INSTALLED_APPS = [
     'drf_yasg'                      # Yet Another Swagger generator
 ]
 
+STATIC_URL = '/static/'
+ROOT_URLCONF = 'task_backend.urls'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',  
@@ -48,11 +50,15 @@ TEMPLATES = [
 
 MIDDLEWARE = [
     # ... other middleware classes
+    'django.contrib.sessions.middleware.SessionMiddleware',  # This should come first
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware', 
     # ... other middleware classes
 ]
+
+SECRET_KEY = 'ed8256e0-ac09-4744-a522-1dde5bac4181'
+
 
 
